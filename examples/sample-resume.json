@@ -1,0 +1,58 @@
+{
+  "selectedTemplate": 3,
+  "basics": {
+    "name": "Alex Johnson",
+    "email": "alex.johnson@example.com",
+    "phone": "+1-555-0199",
+    "website": "https://alexjohnson.dev",
+    "location": {
+      "address": "Seattle, WA"
+    }
+  },
+  "work": [
+    {
+      "company": "TechStart Inc.",
+      "position": "Senior Full Stack Developer",
+      "location": "Seattle, WA",
+      "startDate": "2021",
+      "endDate": "Present",
+      "highlights": [
+        "Led development of microservices architecture serving 1M+ users",
+        "Mentored junior developers and conducted code reviews",
+        "Reduced application load time by 40% through optimization"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of Washington",
+      "area": "Computer Science",
+      "studyType": "Bachelor of Science",
+      "startDate": "2017",
+      "endDate": "2021",
+      "location": "Seattle, WA",
+      "gpa": "3.8"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Programming Languages",
+      "keywords": ["JavaScript", "TypeScript", "Python", "Go"]
+    },
+    {
+      "name": "Frontend",
+      "keywords": ["React", "Vue.js", "Angular", "HTML5", "CSS3"]
+    },
+    {
+      "name": "Backend",
+      "keywords": ["Node.js", "Express", "Django", "PostgreSQL", "MongoDB"]
+    }
+  ],
+  "projects": [
+    {
+      "name": "E-commerce Platform",
+      "description": "Full-stack e-commerce solution with payment integration",
+      "keywords": ["React", "Node.js", "Stripe", "PostgreSQL"]
+    }
+  ]
+}
