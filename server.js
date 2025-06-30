@@ -12,7 +12,7 @@ import path from "path";
 
 // Configuration
 const RESUME_ENDPOINT = "https://latexresu.me/api/generate/resume";
-const OUTPUT_DIR = "./generated-resumes";
+const OUTPUT_DIR = "E:\\DDEV\\GENERATED RESUME\\generated-resumes";
 
 class ResumeGeneratorServer {
   constructor() {
@@ -44,7 +44,7 @@ class ResumeGeneratorServer {
         {
           name: "generate_resume",
           description:
-            "Generate a resume PDF using the LaTeX Resume API. Provide resume data and get a professionally formatted PDF.",
+            "Generate a resume PDF using the LaTeX Resume API. Provide resume data and get a professionally formatted PDF. Can save to custom folders within the generated-resumes directory.",
           inputSchema: {
             type: "object",
             properties: {
@@ -175,8 +175,45 @@ class ResumeGeneratorServer {
                   "Optional filename for the saved PDF (without extension)",
                 default: "resume",
               },
+              folderPath: {
+                type: "string",
+                description:
+                  "Optional folder path within the generated-resumes directory. If not specified, saves to the root directory. If the folder doesn't exist, it will be created. Example: 'job-applications/google' or 'drafts'",
+              },
             },
             required: ["resumeData"],
+          },
+        },
+        {
+          name: "create_folder",
+          description:
+            "Create a new folder within the generated-resumes directory for organizing resumes",
+          inputSchema: {
+            type: "object",
+            properties: {
+              folderPath: {
+                type: "string",
+                description:
+                  "Folder path to create within the generated-resumes directory. Can include nested folders. Example: 'job-applications/google' or 'personal-projects'",
+              },
+            },
+            required: ["folderPath"],
+          },
+        },
+        {
+          name: "list_folders",
+          description:
+            "List all folders and files in the generated-resumes directory to help with organization",
+          inputSchema: {
+            type: "object",
+            properties: {
+              path: {
+                type: "string",
+                description:
+                  "Optional path within generated-resumes to list. If not specified, lists the root directory",
+                default: "",
+              },
+            },
           },
         },
         {
@@ -201,12 +238,147 @@ class ResumeGeneratorServer {
       switch (request.params.name) {
         case "generate_resume":
           return await this.generateResume(request.params.arguments);
+        case "create_folder":
+          return await this.createFolder(request.params.arguments);
+        case "list_folders":
+          return await this.listFolders(request.params.arguments);
         case "create_resume_template":
           return await this.createResumeTemplate(request.params.arguments);
         default:
           throw new Error(`Unknown tool: ${request.params.name}`);
       }
     });
+  }
+
+  async createFolder(args) {
+    try {
+      const { folderPath } = args;
+
+      if (!folderPath || folderPath.trim() === "") {
+        throw new Error("Folder path cannot be empty");
+      }
+
+      // Sanitize the folder path to prevent directory traversal
+      const sanitizedPath = this.sanitizePath(folderPath);
+      const fullPath = path.join(OUTPUT_DIR, sanitizedPath);
+
+      // Create the folder
+      await fs.mkdir(fullPath, { recursive: true });
+
+      const relativePath = path.relative(OUTPUT_DIR, fullPath);
+
+      return {
+        content: [
+          {
+            type: "text",
+            text:
+              `✅ **Folder created successfully!**\n\n` +
+              `📁 **Folder path:** ${relativePath}\n` +
+              `📍 **Full path:** ${path.resolve(fullPath)}\n\n` +
+              `You can now save resumes to this folder by specifying the folderPath parameter.`,
+          },
+        ],
+      };
+    } catch (error) {
+      return {
+        content: [
+          {
+            type: "text",
+            text:
+              `❌ **Error creating folder:** ${error.message}\n\n` +
+              `Please check that the folder path is valid and you have write permissions.`,
+          },
+        ],
+        isError: true,
+      };
+    }
+  }
+
+  async listFolders(args) {
+    try {
+      const { path: subPath = "" } = args;
+
+      // Sanitize the path
+      const sanitizedPath = this.sanitizePath(subPath);
+      const fullPath = path.join(OUTPUT_DIR, sanitizedPath);
+
+      // Ensure the directory exists
+      await fs.mkdir(fullPath, { recursive: true });
+
+      // Read directory contents
+      const items = await fs.readdir(fullPath, { withFileTypes: true });
+
+      let folderList = "";
+      let fileList = "";
+
+      for (const item of items) {
+        const itemPath = path.join(sanitizedPath, item.name);
+        if (item.isDirectory()) {
+          folderList += `📁 ${itemPath}/\n`;
+        } else if (item.name.endsWith(".pdf")) {
+          const stats = await fs.stat(path.join(fullPath, item.name));
+          const size = (stats.size / 1024).toFixed(2);
+          const date = stats.mtime.toLocaleDateString();
+          fileList += `📄 ${itemPath} (${size} KB, ${date})\n`;
+        }
+      }
+
+      const currentPath = sanitizedPath || "root";
+      let result = `📂 **Contents of ${currentPath}:**\n\n`;
+
+      if (folderList) {
+        result += `**Folders:**\n${folderList}\n`;
+      }
+
+      if (fileList) {
+        result += `**Resume PDFs:**\n${fileList}\n`;
+      }
+
+      if (!folderList && !fileList) {
+        result += `The directory is empty.\n`;
+      }
+
+      result += `\n💡 **Tip:** Use the folderPath parameter in generate_resume to save PDFs to specific folders.`;
+
+      return {
+        content: [
+          {
+            type: "text",
+            text: result,
+          },
+        ],
+      };
+    } catch (error) {
+      return {
+        content: [
+          {
+            type: "text",
+            text:
+              `❌ **Error listing directory:** ${error.message}\n\n` +
+              `Please check that the path exists and you have read permissions.`,
+          },
+        ],
+        isError: true,
+      };
+    }
+  }
+
+  sanitizePath(inputPath) {
+    if (!inputPath) return "";
+
+    // Remove any potential directory traversal attempts
+    const normalizedPath = path.normalize(inputPath);
+
+    // Remove leading slashes and dots
+    let sanitized = normalizedPath.replace(/^[\/\\\.]+/, "");
+
+    // Replace any remaining .. sequences
+    sanitized = sanitized.replace(/\.\./g, "");
+
+    // Replace invalid characters with underscores
+    sanitized = sanitized.replace(/[<>:"|?*]/g, "_");
+
+    return sanitized;
   }
 
   async createResumeTemplate(args) {
@@ -308,7 +480,7 @@ class ResumeGeneratorServer {
 
   async generateResume(args) {
     try {
-      const { resumeData, filename = "resume" } = args;
+      const { resumeData, filename = "resume", folderPath } = args;
 
       // Ensure the resume data has the required structure
       const completeResumeData = {
@@ -343,8 +515,15 @@ class ResumeGeneratorServer {
         ...resumeData,
       };
 
+      // Determine the output directory
+      let outputDir = OUTPUT_DIR;
+      if (folderPath && folderPath.trim() !== "") {
+        const sanitizedFolderPath = this.sanitizePath(folderPath);
+        outputDir = path.join(OUTPUT_DIR, sanitizedFolderPath);
+      }
+
       // Ensure output directory exists
-      await fs.mkdir(OUTPUT_DIR, { recursive: true });
+      await fs.mkdir(outputDir, { recursive: true });
 
       const response = await fetch(RESUME_ENDPOINT, {
         method: "POST",
@@ -381,13 +560,14 @@ class ResumeGeneratorServer {
         .replace(/[:.]/g, "-")
         .split("T")[0];
       const pdfFilename = `${filename}-${timestamp}.pdf`;
-      const filePath = path.join(OUTPUT_DIR, pdfFilename);
+      const filePath = path.join(outputDir, pdfFilename);
 
       const arrayBuffer = await response.arrayBuffer();
       const buffer = Buffer.from(arrayBuffer);
       await fs.writeFile(filePath, buffer);
 
       const fullPath = path.resolve(filePath);
+      const relativePath = path.relative(OUTPUT_DIR, filePath);
 
       return {
         content: [
@@ -395,12 +575,14 @@ class ResumeGeneratorServer {
             type: "text",
             text:
               `✅ Resume generated successfully!\n\n` +
-              `📄 **File saved to:** ${fullPath}\n` +
+              `📄 **File saved to:** ${relativePath}\n` +
+              `📍 **Full path:** ${fullPath}\n` +
               `📏 **File size:** ${(buffer.length / 1024).toFixed(2)} KB\n` +
               `🎨 **Template used:** #${completeResumeData.selectedTemplate}\n` +
               `👤 **Resume for:** ${
                 completeResumeData.basics.name || "Unknown"
-              }\n\n` +
+              }\n` +
+              `📁 **Saved in folder:** ${folderPath || "root directory"}\n\n` +
               `The resume PDF is ready to use!`,
           },
         ],
@@ -415,7 +597,8 @@ class ResumeGeneratorServer {
               `Please check:\n` +
               `• Your internet connection\n` +
               `• That all required fields are filled\n` +
-              `• The resume data structure is correct`,
+              `• The resume data structure is correct\n` +
+              `• The specified folder path is valid`,
           },
         ],
         isError: true,
