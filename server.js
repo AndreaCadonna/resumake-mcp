@@ -88,24 +88,6 @@ class ResumeGeneratorServer {
                     },
                     required: ["name"],
                   },
-                  education: {
-                    type: "array",
-                    items: {
-                      type: "object",
-                      properties: {
-                        institution: { type: "string" },
-                        location: { type: "string" },
-                        area: { type: "string", description: "Field of study" },
-                        studyType: {
-                          type: "string",
-                          description: "Degree type (e.g., Bachelor, Master)",
-                        },
-                        startDate: { type: "string" },
-                        endDate: { type: "string" },
-                        gpa: { type: "string" },
-                      },
-                    },
-                  },
                   work: {
                     type: "array",
                     items: {
@@ -153,6 +135,24 @@ class ResumeGeneratorServer {
                           type: "array",
                           items: { type: "string" },
                         },
+                      },
+                    },
+                  },
+                  education: {
+                    type: "array",
+                    items: {
+                      type: "object",
+                      properties: {
+                        institution: { type: "string" },
+                        location: { type: "string" },
+                        area: { type: "string", description: "Field of study" },
+                        studyType: {
+                          type: "string",
+                          description: "Degree type (e.g., Bachelor, Master)",
+                        },
+                        startDate: { type: "string" },
+                        endDate: { type: "string" },
+                        gpa: { type: "string" },
                       },
                     },
                   },
@@ -401,17 +401,6 @@ class ResumeGeneratorServer {
           address: "[Your City, State]",
         },
       },
-      education: [
-        {
-          institution: "[University Name]",
-          location: "[City, State]",
-          area: "[Your Major]",
-          studyType: "[Degree Type]",
-          startDate: "[Start Date]",
-          endDate: "[End Date]",
-          gpa: "[GPA if relevant]",
-        },
-      ],
       work: [
         {
           company: "[Company Name]",
@@ -427,6 +416,7 @@ class ResumeGeneratorServer {
           ],
         },
       ],
+      
       skills: [
         {
           name: "[Skill Category]",
@@ -444,6 +434,17 @@ class ResumeGeneratorServer {
           description: "[Brief project description and your role]",
           url: "[Project URL if available]",
           keywords: ["[Technology Used]", "[Skill Demonstrated]"],
+        },
+      ],
+      education: [
+        {
+          institution: "[University Name]",
+          location: "[City, State]",
+          area: "[Your Major]",
+          studyType: "[Degree Type]",
+          startDate: "[Start Date]",
+          endDate: "[End Date]",
+          gpa: "[GPA if relevant]",
         },
       ],
       awards: [
@@ -498,10 +499,10 @@ class ResumeGeneratorServer {
           location: { address: "" },
           name: "",
         },
-        education: [],
         work: [],
         skills: [],
         projects: [],
+        education: [],
         awards: [],
         sections: [
           "templates",
