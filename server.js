@@ -60,6 +60,7 @@ class ResumeGeneratorServer {
                   headings: {
                     type: "object",
                     properties: {
+                      awards: { type: "string", default: "Introduction" },
                       work: { type: "string", default: "Work Experience" },
                       education: { type: "string", default: "Education" },
                       skills: { type: "string", default: "Skills" },
@@ -387,9 +388,10 @@ class ResumeGeneratorServer {
     const template = {
       selectedTemplate: templateNumber,
       headings: {
+        awards: "Introduction",
         work: "Work Experience",
-        education: "Education",
         skills: "Skills",
+        education: "Education",
         projects: "Projects",
       },
       basics: {
@@ -416,7 +418,7 @@ class ResumeGeneratorServer {
           ],
         },
       ],
-      
+
       skills: [
         {
           name: "[Skill Category]",
@@ -449,19 +451,17 @@ class ResumeGeneratorServer {
       ],
       awards: [
         {
-          date: "[Award Date]",
-          awarder: "[Organization/Institution]",
-          summary: "[Award Name and Brief Description]",
+          summary: "[Personal introduction or objective statement]",
         },
       ],
       sections: [
         "templates",
         "profile",
-        "education",
+        "awards",
         "work",
         "skills",
+        "education",
         "projects",
-        "awards",
       ],
     };
 
@@ -487,6 +487,7 @@ class ResumeGeneratorServer {
       const completeResumeData = {
         selectedTemplate: 1,
         headings: {
+          awards: "Introduction",
           work: "Work Experience",
           education: "Education",
           skills: "Skills",
@@ -507,11 +508,11 @@ class ResumeGeneratorServer {
         sections: [
           "templates",
           "profile",
-          "education",
+          "awards",
           "work",
           "skills",
+          "education",
           "projects",
-          "awards",
         ],
         ...resumeData,
       };

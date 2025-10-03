@@ -1,117 +1,375 @@
-# Resume Optimization Instructions
+# Resume Generation Guide 
 
-When provided with a job description, follow this systematic approach to create a tailored resume:
+## Configuration Requirements
+- **Link format:** "https://www.linkedin.com/in/andrea-cadonna-3833451a5 https://github.com/AndreaCadonna"
+- **Resume template:** Always use template number 1
+- **Personal project:** Always include and last section on resume
+- **Output tool:** Use MCP resume-generator tool with JSON format
+- **Introduction:** Use the award property as field to write an introduction line following these strict requirements:
+  - MUST include "almost 5 years of experience"
+  - Maximum 2 sentences
+  - MUST include 1-2 soft skills from job requirements (exact phrases when possible)
+  - Focus on personal technical expertise and capabilities
+  - NO industry context references unless explicitly stated in experience dataset
+  - NO company-specific or platform-specific references not in knowledge base
+  - Structure: [Job Title] + experience duration + core technical focus + demonstrated soft skills
 
-## Step 1: Job Description Analysis
-1. **Identify required vs preferred skills** - Distinguish between must-have and nice-to-have qualifications
-2. **Note specific technologies, methodologies, and tools mentioned** - Extract exact technical terms and frameworks
-3. **Look for soft skills and leadership requirements** - Identify team management, communication, or collaboration needs
-4. **Understand the company's tech stack and culture** - Research company background and working environment
+---
 
-## Step 2: Experience Prioritization
-- **Reorder bullet points** to highlight most relevant experience first
-- **Adjust job descriptions** to emphasize matching technologies and methodologies
-- **Include specific versions/frameworks** mentioned in job posting (e.g., "Angular 15+" if specified)
-- **Highlight leadership experience** for senior roles and team lead positions
-- **Always include the university internship** in the work experience section
-- **Experience bullet point limits:**
-  - Most recent experience: Maximum 4 bullet points
-  - Other experiences: Maximum 3 bullet points each
-  - University internship: Single sentence or bullet point only
+## MANDATORY CONSISTENCY CHECKLIST
 
-## Step 3: Achievement Quantification
-Use specific metrics and numbers to demonstrate impact:
-- **Performance improvements:** "Reduced load time by 40%", "Improved API response time by 60%"
-- **Scale of work:** "Built platform serving 10K+ users", "Managed database with 1M+ records"
-- **Team impact:** "Led team of 5 developers", "Mentored 3 junior developers"
-- **Business impact:** "Delivered features resulting in 25% user engagement increase"
+### Pre-Generation Verification (Execute EVERY Time)
+**STOP - Complete this checklist before generating any resume:**
 
-## Step 4: Leverage Technical Strengths
-- **Emphasize full-stack versatility** for roles requiring both frontend/backend development
-- **Highlight startup experience** for agile, fast-paced environments and rapid iteration
-- **Showcase client-facing skills** for consulting or customer-facing roles
-- **Feature AI integration experience** for forward-thinking companies and modern tech stacks
-- **Keep technical skills concise** - prioritize most relevant skills for the specific role
-- **Manage category length based on content type:**
-  - Standard categories (languages, frameworks, databases): Natural grouping with reasonable limits
-  - **Architecture & Development Practices categories: Maximum 4-5 elements** due to longer technical terms
-  - Other categories: Group logically without strict limits if terms are concise
-- **Use multiple skill sections when needed** to improve organization and readability:
-  - Separate programming languages from frameworks
-  - Divide frontend/backend technologies appropriately
-  - Split Architecture and Development Practices into focused subcategories if needed
-  - Group related tools and technologies together
+✅ **Job Title Exact Match Check:**
+- [ ] Does target job title match any compatible title group?
+- [ ] Does target include "Senior" prefix? (Only use if job explicitly states it)
+- [ ] Have I verified the EXACT title from job posting?
 
-## Step 5: Address Potential Gaps
-- **For unfamiliar technologies:** Emphasize transferable skills and quick learning ability
-- **For larger company roles:** Highlight experience with structured processes (Agile, CI/CD, code reviews)
-- **For specialized roles:** Dig deeper into relevant projects and technical details from experience
+✅ **Keyword Extraction Verification:**
+- [ ] Have I extracted ALL hard skills from job description?
+- [ ] Have I identified ALL soft skill exact phrases?
+- [ ] Have I categorized each as Must-have vs Nice-to-have?
 
-## Step 6: Final Optimization Process
-1. **Analyze job posting** for exact keyword matches and technical terminology
-2. **Identify the 5-7 most critical requirements** from the job description
-3. **Rewrite professional summary** to include 2-3 key terms from posting naturally
-4. **Reorder technical skills section** to prioritize job requirements at the top
-5. **Adjust experience bullets** to emphasize most relevant projects and achievements
-6. **Ensure 60-80% keyword match** with job requirements while maintaining readability
-7. **Review for natural flow** and ensure content reads professionally, not as keyword stuffing
+✅ **Experience Matching Validation:**
+- [ ] Can I point to specific experience for each claimed skill?
+- [ ] Am I using EXACT keywords from job description?
+- [ ] Are soft skills demonstrated through specific examples with exact phrases?
 
-## Step 6.5: Content Accuracy Validation (MANDATORY)
-Before generating the resume, perform this validation:
-1. **Line-by-line fact check** - Compare every resume bullet point against the original experience
-2. **Terminology audit** - Ensure no words have been upgraded (e.g., "tools" → "platforms")
-3. **Scope verification** - Confirm claims don't exceed the actual work performed
-4. **Achievement validation** - Verify all metrics and accomplishments are explicitly stated in source
-5. **Role title accuracy** - Don't inflate job titles beyond what was actually held
+---
 
-## Language Precision Guidelines
-- **Conservative phrasing preferred** - Use "developed tools for" instead of "built platforms for"
-- **Specific over general** - Use "automation workflows" instead of "automation systems"
-- **Avoid business buzzwords** - Don't add terms like "enterprise-grade," "best-in-class," or "cutting-edge" unless explicitly mentioned
-- **Clarify vs. claim** - Use "contributed to" or "worked on" when the exact scope is unclear
+## Step 1: Systematic Job Description Analysis
 
-## Content Integrity Requirements
-- **Base content ONLY on provided personal experience** - Never invent, hallucinate, or make up facts, statistics, or achievements
-- **Use only factual information** from the experience summary provided
-- **Use only projects explicitly described as "Project Contributions"** - Do not convert work experience into projects
-- **Rephrase and optimize existing statements** to improve clarity and impact for specific contexts
-- **Reorganize and emphasize** existing experience to match job requirements
-- **Never add fictional metrics** - only use quantitative data explicitly mentioned in the experience summary
-- **Maintain truthful representation** while optimizing language and presentation
+### 1.1 Required Keyword Extraction Protocol
 
-## What to NEVER Add:
-- **Fictional project names or platforms**
-- **Upgraded terminology** (tools → platforms, scripts → systems)
-- **Inferred capabilities** based on related experience
-- **Industry buzzwords** not present in original experience
-- **Leadership roles** not explicitly held
-- **Technologies** not specifically mentioned as used
-- **Scale metrics** not provided in source material
-- **Business outcomes** not explicitly stated
+**🎯 Hard Skills Extraction (Mandatory Process):**
 
-## Content Integrity Requirements - CRITICAL
-- **NEVER invent or extrapolate beyond stated facts** - If the experience says "built automation tools," do not claim "built automation platforms" or "developed AI systems"
-- **Use EXACT terminology from source material** - Don't upgrade "tools" to "platforms," "frameworks" to "systems," or "workflows" to "infrastructure"
-- **Stick to explicitly stated scope** - If someone worked on "content creation workflows," don't claim they built "content creation platforms"
-- **Question every enhancement** - Before writing any bullet point, ask: "Is this exact claim explicitly supported by the source material?"
-- **When in doubt, use more conservative language** - Better to understate than overstate capabilities
+**STEP A: Copy ALL technical requirements exactly as written:**
+- Programming Languages: [List exactly as in job]
+- Frameworks: [List exactly as in job]
+- Tools: [List exactly as in job]
+- Databases: [List exactly as in job]
+- Methodologies: [List exactly as in job]
 
-## Output Requirements
-- **Use the MCP resume-generator tool** to create the final resume document
-- **Always use template number 1** from the resume-generator MCP server
-- **Structure content in the required JSON format** for the resume-generator MCP server
-- **Generate complete resumeData object** with all necessary fields (basics, work, education, skills, projects)
-- **Keep resume concise** - prioritize most relevant information and maintain brevity
-- **Limit to essential content only** - focus on high-impact achievements and skills
-- Maintain professional tone while maximizing relevance to specific role
-- Include only achievements and metrics from the provided experience summary
-- Ensure all technical skills and experience align with job requirements
-- Rephrase existing content for better impact without changing factual accuracy
+**STEP B: Categorize by priority:**
+- **REQUIRED:** Keywords in "must-have," "required," or "essential" sections
+- **PREFERRED:** Keywords in "nice-to-have," "preferred," or "bonus" sections
+- **IMPLICIT:** Technical requirements mentioned in job duties
 
-## Red Flags During Resume Creation
-Stop and verify if you find yourself:
-- Using more impressive-sounding synonyms
-- Combining multiple small experiences into one larger claim
-- Adding context that wasn't explicitly provided
-- Making assumptions about the scope or impact of work
-- Using industry jargon not present in the original experience
+**🤝 Soft Skills Extraction (Exact Phrase Protocol):**
+
+**STEP A: Extract exact phrases (copy-paste from job description):**
+- Communication requirements: [Exact phrases]
+- Leadership requirements: [Exact phrases]  
+- Work style requirements: [Exact phrases]
+- Collaboration requirements: [Exact phrases]
+
+**STEP B: Create exact phrase integration list:**
+| Exact Job Phrase | Must Include In Resume | Bullet Point Strategy |
+|-----------------|----------------------|----------------------|
+| "Cross-functional collaboration" | ✅ Exact phrase required | Lead bullet with exact phrase |
+| "Analytical thinking" | ✅ Exact phrase required | Include in problem-solving bullet |
+| "Ownership and accountability" | ✅ Both terms required | Combine in leadership bullet |
+
+### 1.2 Experience Dataset Mapping (Mandatory Verification)
+
+**STEP A: Create skills inventory from experience:**
+```
+MY ACTUAL EXPERIENCE INVENTORY:
+Hard Skills - Direct: [Angular 2+, RxJS, TypeScript, etc.]
+Hard Skills - Transferable: [Related technologies I've used]
+Soft Skills - Demonstrated: [Leadership examples, collaboration examples]
+Quantified Results: [Specific metrics I can verify]
+```
+
+**STEP B: Match against job requirements:**
+| Job Requirement | My Experience Status | Exact Keywords to Use | Verification Source |
+|----------------|---------------------|---------------------|-------------------|
+| Angular 2+ | ✅ Direct (5 years) | "Angular 2+" | NEG Digital role |
+| Cross-functional collaboration | ✅ Demonstrated | "cross-functional collaboration with design and product teams" | NEG Digital role |
+| Performance optimization | ✅ Direct | "performance optimization techniques" | Multiple roles |
+
+---
+
+## Step 2: Job Title Optimization (Strict Protocol)
+
+### 2.1 Title Matching Decision Tree
+
+**DECISION FLOW (Follow exactly):**
+
+1. **Is my current title identical to job title?** 
+   - YES → Keep current title
+   - NO → Go to step 2
+
+2. **Is job title in compatible group with my experience?**
+   - Compatible Groups:
+     - Full Stack Developer ↔ Full Stack Software Engineer ↔ Software Engineer ↔ Software Developer
+     - Frontend Developer ↔ Frontend Software Engineer ↔ Frontend Engineer
+     - Backend Developer ↔ Backend Engineer ↔ API Developer
+   - YES → Use job title exactly
+   - NO → Keep current title
+
+3. **Does job title include "Senior" and I have 3+ years experience?**
+   - YES → Add "Senior" prefix
+   - NO → Use base title only
+
+4. **Does job title include specific technology (React Developer, Angular Developer)?**
+   - AND do I have 2+ years with that technology?
+   - YES → Use technology-specific title
+   - NO → Use general title
+
+### 2.2 Title Verification Protocol
+**Before finalizing, verify:**
+- [ ] Title exactly matches job posting (character-by-character)
+- [ ] Seniority level matches my actual experience
+- [ ] I can defend this title in an interview
+- [ ] Title appears in my most recent role only
+
+---
+
+## Step 3: Exact Keyword Integration Formula
+
+### 3.1 Bullet Point Construction Protocol
+
+**MANDATORY TEMPLATE:**
+```
+[Action Verb] + [EXACT job keyword/phrase] + [specific deliverable] + using [EXACT tech from job] + which [quantified result]
+```
+
+**EXAMPLES:**
+
+**For "Cross-functional collaboration" requirement:**
+```
+Led cross-functional collaboration with design and product teams to develop [specific feature] using Angular 2+ and RxJS, which improved user experience metrics by [X]% for [trading platform/business system]
+```
+
+**For "Performance optimization" requirement:**
+```
+Implemented performance optimization techniques including lazy loading and bundle optimization using Angular 2+, which reduced load times by [X]% and improved application startup performance for [specific platform type]
+```
+
+**For "Analytical thinking" requirement:**
+```
+Applied analytical thinking to optimize database architecture and frontend performance using [specific tech], which reduced data retrieval times by [X]% and enhanced [specific business outcome]
+```
+
+### 3.2 Soft Skills Integration Checklist
+
+**For EACH required soft skill, ensure:**
+- [ ] Exact phrase from job description included
+- [ ] Demonstrated through specific technical example
+- [ ] Quantified outcome when possible
+
+---
+
+## Step 4: Skills Section Standardization
+
+### Skill Section Guidelines
+- Keep technical skills concise - prioritize most relevant skills for specific role
+- Maximum 4 elements per standard category (languages, frameworks, databases)
+- Architecture & Development Practices: Maximum 3 elements (due to longer technical terms)
+- Reorder sections to prioritize job requirements at the top
+- Use multiple skill sections when needed for better organization
+
+### Interests Category Strategy
+Add "Interests" at end of skills section to address gaps:
+- Include technologies from job posting not in direct experience
+- Particularly useful for "preferred" or "nice-to-have" requirements
+- Keep under 3 technologies to maintain credibility
+
+---
+
+## Step 5: Introduction Optimization Formula
+
+
+
+### 5.1 Introduction Construction Protocol (Strict Adherence Required)
+
+**MANDATORY COMPONENTS:**
+1. **Job title from posting** (exact match)
+2. **"almost 5 years of experience"** (required phrase)
+3. **General technical area** (broad, credible scope)
+4. **1-2 soft skills from job requirements** (exact phrases when possible)
+5. **Personal capability focus** (avoid industry/platform references)
+
+**FORBIDDEN ELEMENTS:**
+- ❌ Platform-specific mentions not in knowledge base ("e-commerce," "financial systems")
+- ❌ Company context not explicitly documented in experience
+- ❌ More than 2 sentences
+- ❌ More than 2 soft skills
+
+**APPROVED TEMPLATE:**
+```
+[Job Title] with almost 5 years of experience in [general technical area]. Demonstrated [soft skill 1] and [soft skill 2] while delivering [broad technical capability].
+```
+
+**CORRECT EXAMPLES:**
+
+**For Frontend Role:**
+```
+Frontend Software Engineer with almost 5 years of experience in web application development. Proven cross-functional collaboration and analytical thinking in delivering user-focused solutions.
+```
+
+**For Full Stack Role:**
+```
+Full Stack Developer with almost 5 years of experience in software development. Strong problem-solving abilities and end-to-end ownership in building scalable applications.
+```
+
+**For Senior Role:**
+```
+Senior Software Engineer with almost 5 years of experience in frontend development. Demonstrated leadership and mentoring capabilities while maintaining high code quality standards.
+```
+
+
+### 5.2 Soft Skills Integration Options
+
+**Choose 1-2 from job requirements (exact phrases preferred):**
+- Cross-functional collaboration
+- Analytical thinking  
+- Problem-solving abilities
+- End-to-end ownership
+- Leadership and mentoring
+- Adaptability to rapid changes
+- Performance-focused mindset
+- Team collaboration
+- Technical ownership
+- Quality-driven development
+
+### 5.3 Technical Focus Options (Use Only From Experience Dataset)
+
+**Based on actual experience:**
+- "developing high-performance Angular applications"
+- "building complex web applications using modern frameworks"  
+- "architecting and developing enterprise-level solutions"
+- "creating scalable frontend architectures with reactive programming"
+- "developing full-stack applications with performance optimization focus"
+
+### 5.4 Verification Protocol
+
+**Before finalizing introduction, confirm:**
+- [ ] Contains exactly required phrase "almost 5 years of experience"
+- [ ] Uses exact job title from posting
+- [ ] Includes 1-2 soft skills from job requirements
+- [ ] Technical focus matches actual experience dataset
+- [ ] NO industry context
+- [ ] Maximum 2 sentences
+- [ ] Flows naturally and professionally
+
+---
+
+## Step 6: Quality Assurance Protocol (MANDATORY)
+
+### 6.1 Pre-Submission Checklist
+
+**TECHNICAL ACCURACY:**
+- [ ] Every technical skill claimed has specific experience backing
+- [ ] All metrics are verifiable from actual work experience
+- [ ] Technologies mentioned are ones actually used (not learned/studied)
+- [ ] Job title matches exactly with target posting
+
+**KEYWORD OPTIMIZATION:**
+- [ ] 80%+ of required hard skills addressed
+- [ ] All required soft skills included as exact phrases
+- [ ] ATS-friendly exact keyword matches confirmed
+
+**CONTENT AUTHENTICITY:**
+- [ ] All bullet points traceable to specific job experiences
+- [ ] No fabricated projects, metrics, or responsibilities
+- [ ] Seniority level matches actual experience
+- [ ] Can defend every claim in an interview
+
+### 6.2 Common Error Prevention
+
+**RED FLAGS - Stop if any apply:**
+- Using technologies never actually worked with
+- Adding "Senior" when job doesn't mention it
+- Claiming leadership roles not actually held
+- Inventing metrics not from actual work
+- Using soft skill phrases without demonstrating examples
+- Exceeding maximum bullet points per role (4 for most recent, 3 for others)
+
+---
+
+## Step 7: Final Validation Protocol
+
+### 7.1 Keyword Density Verification
+
+**REQUIRED CHECKS:**
+1. **Count job keywords in final resume**
+2. **Verify 60-80% match for required hard skills**
+3. **Confirm all required soft skills appear as exact phrases**
+4. **Check natural integration (no keyword stuffing)**
+
+### 7.2 Experience Hierarchy Verification
+
+**BULLET POINT ORDER (Mandatory):**
+- **First bullet:** Must address top job requirement with exact keywords
+- **Second bullet:** Must address second most important requirement
+- **Remaining bullets:** Ordered by relevance to job requirements
+- **Maximum limits:** 4 bullets for most recent role, 3 for others
+
+### 7.3 Professional Presentation Check
+
+**FINAL REQUIREMENTS:**
+- [ ] Each bullet point maximum 2 lines
+- [ ] Action verbs match target seniority level
+- [ ] Technical complexity appropriate for role level
+- [ ] Business impact statements align with company context
+- [ ] Education section remains last
+- [ ] Contact information includes exact link format
+
+---
+
+## Step 8: Personal Projects Section Protocol
+
+### 8.1 Project Selection and Presentation
+
+**SELECTION CRITERIA:**
+- Prioritize projects using technologies mentioned in job posting
+- Select projects that demonstrate required skills or methodologies
+
+**MANDATORY RULE:**
+- ❌ **DO NOT invent, add, or modify any project information**
+- ✅ **Use only information explicitly documented in knowledge base**
+
+### 8.2 Project Structure Template
+
+**FORMAT:**
+```
+[Project Name] - [Brief description using job keywords] | [Tech stack]
+• [Key feature/implementation that shows relevant skill]
+• [Technical challenge solved or outcome achieved]
+```
+
+**OPTIMIZATION APPROACH:**
+- Emphasize technologies and skills mentioned in job requirements
+- Use job posting keywords in descriptions where naturally applicable
+- Highlight aspects most relevant to target role (frontend/backend/full-stack focus)
+
+### 8.3 Section Guidelines
+
+**PLACEMENT:** Always last section on resume (after Skills)
+**FOCUS:** Support technical claims made elsewhere in resume
+
+**VALIDATION:** Each project must be verifiable from knowledge base and defendable in interviews.
+
+---
+
+## CONSISTENCY ENFORCEMENT RULES
+
+### Mandatory Process Order
+1. **ALWAYS start with complete job description analysis**
+2. **ALWAYS create skills inventory before writing**
+3. **ALWAYS verify job title matching protocol**
+4. **ALWAYS use exact keyword integration formulas**
+5. **ALWAYS complete full quality assurance checklist**
+
+### Error Prevention Protocol
+- **Never skip the pre-generation checklist**
+- **Never use technologies not in experience inventory**
+- **Never use industry references not in experience inventory**
+- **Never invent missing information**
+- **Never add seniority levels not in job posting**
+- **Never exceed maximum bullet point limits**
+- **Never submit without keyword density verification**
+
