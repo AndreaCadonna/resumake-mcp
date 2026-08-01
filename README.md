@@ -1,4 +1,23 @@
-# Resume Generator MCP Server
+# Resume Generator MCP Server (Discontinued)
+
+> [!IMPORTANT]
+> This MCP server is no longer maintained. Resumake and the hosted resume-rendering
+> service used by this project have been discontinued, so this implementation can
+> no longer generate PDFs through its original endpoint.
+
+The working resume-tailoring and rendering logic has moved to the
+[`tailor-resume` skill](https://github.com/AndreaCadonna/skills/tree/main/tailor-resume).
+The skill runs the original Resumake v2 LaTeX generators locally, supports all
+nine templates, and does not depend on the discontinued hosted endpoint.
+
+For new installations and usage instructions, use the maintained skill repository:
+
+**[AndreaCadonna/skills - tailor-resume](https://github.com/AndreaCadonna/skills/tree/main/tailor-resume)**
+
+## Archived MCP documentation
+
+The documentation below is retained for historical and migration reference.
+Commands and examples that call the LaTeX Resume API are no longer operational.
 
 A Model Context Protocol (MCP) server that generates professional PDF resumes using LaTeX templates. Integrates seamlessly with Claude Desktop to create polished resumes from structured data with advanced folder management and organization features.
 
@@ -419,13 +438,13 @@ The beautiful resume templates are based on designs from [resumake.io](https://g
 
 ## License
 
-MIT © Andrea Cadonna
+MIT © Resume Generator contributors
 
 ## Support
 
 - 🐛 **Bug Reports:** [GitHub Issues](https://github.com/yourusername/resume-generator-mcp/issues)
 - 💡 **Feature Requests:** [GitHub Discussions](https://github.com/yourusername/resume-generator-mcp/discussions)
-- 📧 **Contact:** andrea.cadonna@gmail.com
+- **Contact:** Use GitHub Issues for support.
 
 ## Changelog
 
