@@ -6,14 +6,13 @@ import {
   CallToolRequestSchema,
   ListToolsRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
-import fetch from "node-fetch";
 import fs from "fs/promises";
+import fetch from "node-fetch";
 import path from "path";
 
 // Configuration
 const RESUME_ENDPOINT = "https://latexresu.me/api/generate/resume";
-const OUTPUT_DIR = "E:\\DDEV\\GENERATED RESUME\\generated-resumes";
-
+const OUTPUT_DIR = "generated-resumes";
 class ResumeGeneratorServer {
   constructor() {
     this.server = new Server(
@@ -581,8 +580,7 @@ class ResumeGeneratorServer {
               `📍 **Full path:** ${fullPath}\n` +
               `📏 **File size:** ${(buffer.length / 1024).toFixed(2)} KB\n` +
               `🎨 **Template used:** #${completeResumeData.selectedTemplate}\n` +
-              `👤 **Resume for:** ${
-                completeResumeData.basics.name || "Unknown"
+              `👤 **Resume for:** ${completeResumeData.basics.name || "Unknown"
               }\n` +
               `📁 **Saved in folder:** ${folderPath || "root directory"}\n\n` +
               `The resume PDF is ready to use!`,
